@@ -3,16 +3,12 @@
 
 using namespace std;
 
-int* next( const int* p ){}
+int *next(const int *p) {}
 
-int main( int argc, const char* argv[] )
+int main(int argc, const char *argv[])
 {
-
-
 }
 
-int* next(const int* p) {
-  
-
-
+int *next(const int *p)
+{
 }
