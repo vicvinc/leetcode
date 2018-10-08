@@ -37,20 +37,6 @@ public:
       }
     }
   };
-#if 0 
-    void setRowzero( vector<vector<int> > &matrix, int row ) {
-	int col = matrix[1].size();
-	for( int i = 0; i < col; i++ ) {
-		matrix[row][i] = 0;
-	}	
-    }
-    void setColzero( vector<vector<int> > &matrix, int col ) {
-   	int row = matrix.size();
-	for( int i = 0; i < row; i++ ) {
-		matrix[i][col] = 0;
-	}
-    }
-#endif
 };
 
 int main(int argc, const char *argv[]) {
