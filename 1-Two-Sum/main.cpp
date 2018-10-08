@@ -23,26 +23,6 @@ public:
         resvector.push_back(i + 1);
         break;
       }
-#if 0
-		auto fiter = find( numbers.begin(), numbers.end(), (target - numbers[i]) );
-		if( fiter != NULL ) {
-			resvector.push_back(i);
-			resvector.push_back();	
-		}
-		//for( jviter = iviter; jviter != numbers.end(); jviter++ ) {
-		for( j = i; j < ii; j++ ) {
-			//if( *iviter + *jviter == target ) {
-			if( numbers[i]+numbers[j] == target ) {
-				resmap[i] = j;
-				resvector.push_back(i);	
-				resvector.push_back(j);	
-				//resvector.push_back(*iviter);	
-				//resvector.push_back(*jviter);
-					
-				return resvector;
-			}
-		}
-#endif
     }
     return resvector;
   }
