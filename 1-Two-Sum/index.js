@@ -8,11 +8,7 @@ function twoSum(s, target) {
       dp.push(target - s[i]);
     }
   }
-  console.log(dp);
   return [];
 }
 
-const nums = [-1, -2, -3, -4, -5];
-const target = -8;
-
-console.log(twoSum(nums, target));
+module.exports = twoSum;
