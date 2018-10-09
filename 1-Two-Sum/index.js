@@ -1,40 +1,18 @@
-/**
- *
- * @param {*BigNumber} m
- * @param {*BigNumber} n
- */
-const solution = (m, n) => {
-  const a = m.reverse();
-
-  const b = n.reverse();
-
-  console.info(a, b);
-
-  let carry = 0;
-
-  const largerArray = a.length >= b.length ? a : b;
-  const smallerArray = a.length >= b.length ? b : a;
-
-  // console.info(largerArray, smallerArray);
-
-  return largerArray.reduce((acc, cur, idx) => {
-    if (idx < smallerArray.length) {
-      const added = parseInt(cur) + parseInt(smallerArray[idx]) + carry;
-      if (added >= 10) {
-        carry = 1;
-        acc.push(added % 10);
-      } else {
-        carry = 0;
-        acc.push(added);
-      }
+function twoSum(s, target) {
+  const dp = [];
+  for (let i = 0; i < s.length; i++) {
+    const idx = dp.indexOf(s[i]);
+    if (idx > -1) {
+      return [idx, i];
     } else {
-      acc.push(cur);
+      dp.push(target - s[i]);
     }
-    return acc;
-  }, []);
-};
+  }
+  console.log(dp);
+  return [];
+}
 
-const a = "1234567890987654321".split("");
-const b = "8765432109012345678".split("");
+const nums = [-1, -2, -3, -4, -5];
+const target = -8;
 
-console.log(solution(a, b));
+console.log(twoSum(nums, target));
