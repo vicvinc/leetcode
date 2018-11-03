@@ -20,7 +20,6 @@ var myAtoi = function(str) {
   let num = parseInt(match[0]);
 
   if (isNaN(num)) return 0;
-
   if (num > MAX_INT) return MAX_INT;
   if (num < MIN_INT) return MIN_INT;
 
