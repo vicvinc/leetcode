@@ -3,6 +3,7 @@
  * @return {number}
  */
 var reverse = function(x) {
+  const MAX_INT = 2147483647;
   let t = x < 0 ? -1 * x : x;
 
   t = String(t)
@@ -12,7 +13,7 @@ var reverse = function(x) {
 
   t = parseInt(t);
 
-  return t > 2147483647 ? 0 : x < 0 ? -1 * t : t;
+  return t > MAX_INT ? 0 : x < 0 ? -1 * t : t;
 };
 
 const t = 1534236469;
