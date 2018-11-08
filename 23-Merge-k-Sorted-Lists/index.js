@@ -5,11 +5,6 @@
  *     this.next = null;
  * }
  */
-/**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
- */
 
 function ListNode(val) {
   this.val = val;
@@ -67,7 +62,36 @@ var mergeTwoLists = function(l1, l2) {
   return myHead.next;
 };
 
-const l1 = makeList([1, 2, 3, 5, 10]);
-const l2 = makeList([2, 4, 5, 6]);
+/**
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+var mergeKLists = function(lists) {
+  const len = lists.length;
+  // console.log("cur list len => ", len);
+  if (len <= 1) {
+    return lists[0];
+  }
 
-const merged = mergeTwoLists(l1, l2);
+  if (len === 2) {
+    return mergeTwoLists(lists[0], lists[1]);
+  }
+
+  const mid = ~~(len >> 1);
+  // console.log("len, mid => ", len, mid);
+  const left = lists.slice(0, mid);
+  const right = lists.slice(mid, len);
+  return mergeTwoLists(mergeKLists(left), mergeKLists(right));
+};
+
+const lists = [
+  [1, 2, 3, 4],
+  [2, 3, 4, 5],
+  [3, 4, 5, 6],
+  [6, 7, 8, 9],
+  [5, 6, 7, 8, 9]
+];
+
+const nodeLists = lists.map(list => makeList(list));
+
+printNode(mergeKLists(nodeLists));
