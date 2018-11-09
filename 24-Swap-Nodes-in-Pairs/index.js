@@ -40,28 +40,28 @@ function printNode(head) {
  * @return {ListNode}
  */
 
-function swapNode(a, b) {
-  let temp = a.val;
-  a.val = b.val;
-  b.val = temp;
+function swapNode(prev, curr) {
+  if (curr === null) {
+    return prev;
+  }
+  const nextNode = curr.next;
+  curr.next = prev;
+  prev.next = nextNode;
+  if (nextNode) {
+    prev.next = swapNode(nextNode, nextNode.next);
+  }
+  return curr;
 }
 
 var swapPairs = function(head) {
   let myHead = head;
-  while (myHead) {
-    const next = myHead.next;
-    if (next) {
-      swapNode(myHead, next);
-      myHead = next.next;
-    } else {
-      break;
-    }
+  if (myHead) {
+    return swapNode(myHead, myHead.next);
+  } else {
+    return head;
   }
-  return head;
 };
 
-const list = makeList([1, 2, 3, 4, 5, 6, 7]);
+const list = makeList([1, 2, 3, 4, 5]);
 
-swapPairs(list);
-
-printNode(list);
+printNode(swapPairs(list));
