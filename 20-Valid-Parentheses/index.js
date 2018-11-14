@@ -9,6 +9,7 @@ var isValid = function(s) {
   while (s[i]) {
     const idx = brackets.indexOf(s[i]);
     if (idx > -1) {
+      // ) ] {
       if (idx % 2 === 1) {
         const top = stack[stack.length - 1];
         const topIdx = brackets.indexOf(top);
