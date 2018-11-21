@@ -6,40 +6,37 @@
 var isMatch = function(s, p) {
   const sLen = s.length;
   const pLen = p.length;
-  return rMatch(s, p, sLen - 1, pLen - 1);
-};
 
-const rMatch = function(s, p, i, j) {
-  // console.log("s", s[i], "p", p[j], i, j);
-  // pattern ends
-  // string ends
-  if (j === -1 && i === -1) {
-    return true;
-  }
+  const dp = new Array(sLen + 1).fill(0).map(x => new Array(pLen + 1).fill(0));
 
-  // pattern ends , string not ends
-  if (j === -1 && i > -1) {
-    return false;
-  }
+  dp[0][0] = true;
 
-  if (p[j] === "*") {
-    // * match 0 or as many as it can
-    if (p[j - 1] === "*" || i <= -1) {
-      return rMatch(s, p, i, j - 1);
+  for (let i = 1; i <= pLen; i++) {
+    if (p[i - 1] === "*") {
+      dp[0][i] = dp[0][i - 1];
     }
-    return rMatch(s, p, i, j - 1) || rMatch(s, p, i - 1, j);
   }
 
-  // ? match or character match
-  if ((p[j] === "?" || p[j] === s[i]) && i > -1) {
-    return rMatch(s, p, i - 1, j - 1);
-  } else {
-    return false;
+  for (let i = 1; i <= sLen; i++) {
+    for (let j = 1; j <= pLen; j++) {
+      if (s[i - 1] === p[j - 1] || p[j - 1] === "?") {
+        dp[i][j] = dp[i - 1][j - 1];
+      } else if (p[j - 1] === "*") {
+        dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
+      }
+    }
   }
+  return !!dp[sLen][pLen];
 };
 
 const s =
   "abaabaaaabbabbaaabaabababbaabaabbabaaaaabababbababaabbabaabbbbaabbbbbbbabaaabbaaaaabbaabbbaaaaabbbabb";
 const p = "ab*aaba**abbaaaa**b*b****aa***a*b**ba*a**ba*baaa*b*ab*";
 
-console.log(isMatch(s, p));
+const s1 = "adceb";
+const p1 = "*a*b";
+
+const s2 = "aa";
+const p2 = "*";
+
+console.log(isMatch(s2, p2));
