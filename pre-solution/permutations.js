@@ -3,22 +3,23 @@
  * @return {number[][]}
  */
 
-var permute = function (nums) {
-  let result = [];
+var permute = function(nums) {
+  console.log("result", nums);
 
+  let result = [];
   const f = (arr, m = []) => {
     if (arr.length === 0) {
-      result.push(m)
+      result.push(m);
     } else {
       for (let i = 0; i < arr.length; i++) {
-        let curr = arr.slice()
-        let next = curr.splice(i, 1)
-        f(curr.slice(), m.concat(next))
+        let curr = [...arr];
+        curr.splice(i, 1);
+        f(curr, [...m, curr[i]]);
       }
     }
-  }
-  f(nums)
-  return result
-}
+  };
+  f(nums);
+  return result;
+};
 
-console.log(permute([1,2,3]))
+console.log(permute([1, 2, 3]));
