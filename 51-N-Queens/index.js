@@ -50,7 +50,6 @@ var solveNQueens = function(n) {
     const bLen = board.length;
     if (row === bLen) {
       ans.push(board.map(x => x.join("")));
-      return true;
     }
 
     for (let j = 0; j < bLen; j++) {
@@ -60,8 +59,6 @@ var solveNQueens = function(n) {
         board[row][j] = ".";
       }
     }
-
-    return false;
   };
 
   const board = new Array(n).fill(0).map(x => new Array(n).fill("."));
