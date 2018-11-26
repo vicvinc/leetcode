@@ -1,0 +1,4 @@
+# thoughts
+
+backtrace.
+dfs.
