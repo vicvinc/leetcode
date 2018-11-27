@@ -1,0 +1,4 @@
+# thoughts
+
+sort
+divide conquer
