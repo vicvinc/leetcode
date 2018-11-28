@@ -15,9 +15,11 @@ const tail = x => x[x.length - 1];
 
 const insertInterval = (arr, elem) => {
   const iLen = arr.length;
+  console.log(arr.length, elem);
+  if (iLen === 0) return arr.push(elem);
   // insert
   if (elem.start < head(arr).start) {
-    arr.shift(elem);
+    arr.unshift(elem);
     return;
   }
 
@@ -37,6 +39,8 @@ const insertInterval = (arr, elem) => {
       return;
     }
   }
+  arr.push(elem);
+  return;
 };
 
 var insert = function(intervals, newInterval) {
@@ -46,7 +50,7 @@ var insert = function(intervals, newInterval) {
   const ans = [];
   // insert
   insertInterval(intervals, newInterval);
-  // console.log("after inserted =>", intervals);
+  console.log("after inserted =>", intervals, intervals);
 
   ans.push(head(intervals));
 
@@ -85,8 +89,10 @@ const t6 = [
   [3, 5]
 ];
 
+const t7 = [[1, 5]];
+
 const convertArrytoInterval = a => ({ start: head(a), end: tail(a) });
 
 const convertArraytoIntervals = a => a.map(convertArrytoInterval);
 
-console.log(insert(convertArraytoIntervals(t6), convertArrytoInterval([3, 3])));
+console.log(insert(convertArraytoIntervals([]), convertArrytoInterval([0, 3])));
