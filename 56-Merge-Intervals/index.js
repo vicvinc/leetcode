@@ -9,34 +9,53 @@
  * @param {Interval[]} intervals
  * @return {Interval[]}
  */
+
+const head = x => x[0];
+const tail = x => x[x.length - 1];
+
 var merge = function(intervals) {
-  intervals.sort((a, b) => tail(a).end > tail(b).end);
-
-  const head = x => x[0];
-  const tail = x => x[x.length - 1];
-  const divideMerge = nums => {
-    // console.log("nums", nums);
-    const nLen = nums.length;
-    if (nLen <= 1) return nums;
-    if (nLen === 2) {
-      if (head(nums).end >= tail(nums).start) {
-        const [start, end] = [head(nums).start, tail(nums).end];
-        return [{ start, end }];
-      } else {
-        return nums;
-      }
+  intervals.sort((a, b) => a.start - b.start);
+  console.log(intervals);
+  const iLen = intervals.length;
+  const ans = [];
+  for (let i = 0; i < iLen; i++) {
+    const nums = intervals[i];
+    const last = tail(ans);
+    if (last && last.end >= nums.start) {
+      const start = Math.min(last.start, nums.start);
+      const end = Math.max(last.end, nums.end);
+      ans.pop();
+      ans.push({ start, end });
+    } else {
+      ans.push(nums);
     }
-    const mid = ~~(nLen / 2);
-    const left = nums.slice(0, mid);
-    const right = nums.slice(mid, nLen);
-    return [...divideMerge(left), ...divideMerge(right)];
-  };
+    console.log(ans);
+  }
 
-  return divideMerge(intervals);
+  return ans;
 };
 
 const t = [[1, 3], [2, 6], [8, 10], [15, 18]];
 const t1 = [[1, 4], [4, 5]];
 const t2 = [[1, 3], [2, 6], [8, 10], [15, 18]];
+const t3 = [[1, 4], [0, 2], [3, 5]];
+const t4 = [[1, 4], [0, 4]];
+const t5 = [[2, 3], [4, 5], [6, 7], [8, 9], [1, 10]];
+const t6 = [
+  [2, 3],
+  [0, 1],
+  [1, 2],
+  [3, 4],
+  [4, 5],
+  [1, 1],
+  [0, 1],
+  [4, 6],
+  [5, 7],
+  [1, 1],
+  [3, 5]
+];
 
-console.log(merge(t2));
+const convertArraytoIntervals = a =>
+  a.map(x => ({ start: head(x), end: tail(x) }));
+
+console.log(merge(convertArraytoIntervals(t6)));
