@@ -15,7 +15,6 @@ const tail = x => x[x.length - 1];
 
 var merge = function(intervals) {
   intervals.sort((a, b) => a.start - b.start);
-  console.log(intervals);
   const iLen = intervals.length;
   const ans = [];
   for (let i = 0; i < iLen; i++) {
@@ -29,7 +28,6 @@ var merge = function(intervals) {
     } else {
       ans.push(nums);
     }
-    console.log(ans);
   }
 
   return ans;
