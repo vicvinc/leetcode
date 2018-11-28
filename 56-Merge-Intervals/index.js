@@ -29,7 +29,6 @@ var merge = function(intervals) {
       ans.push(nums);
     }
   }
-
   return ans;
 };
 
