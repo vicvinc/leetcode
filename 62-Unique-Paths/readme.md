@@ -1,0 +1,4 @@
+# thoughts
+
+dp
+backtrace
