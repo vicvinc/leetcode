@@ -28,10 +28,8 @@ var fullJustify = function(words, maxWidth) {
     const spaces = maxWidth - sum - gLen + 1;
     // the last line, put all the rest sapces at end
     if (j === wLen) {
-      if (gLen > 1) {
-        for (let k = 0; k < gLen - 1; k++) {
-          group[k] += " ";
-        }
+      for (let k = 0; k < gLen - 1; k++) {
+        group[k] += " ";
       }
       group.push(" ".repeat(spaces));
     } else {
