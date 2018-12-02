@@ -1,0 +1,5 @@
+# thoughts
+
+straight forward
+
+dp
