@@ -39,7 +39,7 @@ const minDistanceDP = (w1, w2) => {
   );
 
   // w1 === w2 === ''
-  dp[0][0] = 0;
+  // dp[0][0] = 0;
   for (let i = 1; i < w1Len + 1; i++) {
     for (let j = 1; j < w2Len + 1; j++) {
       // matchs
@@ -61,6 +61,9 @@ const minDistanceDP = (w1, w2) => {
 
 const test = ["hello", "word"];
 const t1 = ["eat", "sea"];
+const t2 = ["zoologicoarchaeologist", "zoogeologist"];
 
-console.log(minDistanceDP(head(t1), tail(t1)));
-console.log(minDistance(head(t1), tail(t1)));
+// console.log(minDistanceDP(head(t1), tail(t1)));
+// console.log(minDistance(head(t1), tail(t1)));
+
+console.log(minDistanceDP(head(t2), tail(t2)));
