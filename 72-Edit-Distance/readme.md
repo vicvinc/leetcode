@@ -1,5 +1,6 @@
 # thoughts
 
-straight forward
+straight forward // wrong
+pattern match // wrong
 
-dp
+dp => right
