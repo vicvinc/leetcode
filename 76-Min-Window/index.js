@@ -1,26 +1,41 @@
 const minWindow = (s, t) => {
-  const map = {};
-  for (let c of t) map[c] = 1;
-  console.log(map);
-  let d = Infinity;
+  // generate map
+  const map = t.split("").reduce((acc, cur) => {
+    if (acc[cur]) acc[cur]++;
+    else acc[cur] = 1;
+    return acc;
+  }, {});
+
   let [sLen, tLen, begin, end, head] = [s.length, t.length, 0, 0, 0];
-  let counter = tLen;
+  let [min, counter] = [Infinity, tLen];
+
   while (end < sLen) {
-    if (map[s[end++]]-- >= 0) counter--;
-    while (counter === 0) {
-      //valid
-      if (end - begin < d) {
-        head = begin;
-        d = end - begin;
+    if (map[s[end]]) {
+      if (map[s[end]] > 0) {
+        counter--;
       }
-      if (map[s[begin++]]++ == 0) counter++; //make it invalid
+      map[s[end]]--;
     }
+    while (counter === 0) {
+      if (end - begin < min) {
+        head = begin;
+        min = end - begin;
+      }
+      if (map[s[begin]] < 0) {
+        map[s[begin]]++;
+      } else if (map[s[begin]] === 0) {
+        map[s[begin]]++;
+        counter++;
+      }
+      begin++;
+    }
+    end++;
   }
-  return d == Infinity ? "" : s.substring(head, d);
+  return min === Infinity ? "" : s.substring(head, head + min + 1);
 };
 
-const s = "ADOBECODEBANC";
+const s = "AA";
 
-const t = "ABC";
+const t = "AA";
 
 console.log(minWindow(s, t));
