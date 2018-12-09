@@ -3,10 +3,10 @@ const binarySearch = (nums, target) => {
   let end = nums.length - 1;
   while (start <= end) {
     const mid = ~~((end + start) >> 1);
-    if (target <= nums[mid]) {
-      end = mid - 1;
-    } else {
+    if (target >= nums[mid]) {
       start = mid + 1;
+    } else {
+      end = mid - 1;
     }
   }
   return start;
