@@ -1,0 +1,5 @@
+# thoughts
+
+straightforward
+stack
+queue
