@@ -11,6 +11,17 @@
  */
 const head = x => x[0];
 const tail = x => x[x.length - 1];
+const popStackEqN = (stack, n) => {
+  let tt = tail(stack);
+  while (tt && tt.val === n) {
+    stack.pop();
+    tt = tail(stack);
+  }
+};
+const setStackTailNext = (stack, next) => {
+  const t = tail(stack);
+  if (t) t.next = next;
+};
 
 var deleteDuplicates = function(nodeHead) {
   const stack = [];
@@ -27,27 +38,17 @@ var deleteDuplicates = function(nodeHead) {
       remove = current.val;
       stack.push(current);
     } else {
-      let tt = tail(stack);
-      while (tt && tt.val === remove) {
-        stack.pop();
-        tt = tail(stack);
-      }
-      if (tt) tt.next = current;
+      popStackEqN(stack, remove);
+      setStackTailNext(stack, current);
       stack.push(current);
       remove = "#";
     }
     current = current.next;
     // console.log("stack", stack.map(x => x.val), remove);
   }
-  if (remove !== "#") {
-    let tt = tail(stack);
-    while (tt && tt.val === remove) {
-      stack.pop();
-      tt = tail(stack);
-    }
-  }
-  const t = tail(stack);
-  if (t) t.next = null;
+
+  popStackEqN(stack, remove);
+  setStackTailNext(stack, null);
   // console.log("ans stack", stack);
   return head(stack) || null;
 };
